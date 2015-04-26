@@ -20,6 +20,7 @@ RUN apt-get update && \
     chown steam:steam -R /steamcmd && \
     curl -s http://media.steampowered.com/installer/steamcmd_linux.tar.gz | \
     tar -xz -C /steamcmd
+# Switch to Steam user
 USER steam
 WORKDIR "/steamcmd"
 ENTRYPOINT ["/steamcmd/steamcmd.sh"]
