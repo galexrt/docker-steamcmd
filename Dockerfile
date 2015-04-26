@@ -16,11 +16,11 @@ RUN apt-get update && \
         curl && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-    mkdir -p /steamcmd && \
-    chown steam:steam -R /steamcmd && \
+    mkdir -p "$STEAMCMD_PATH" && \
+    chown steam:steam -R "$STEAMCMD_PATH" && \
     curl -s http://media.steampowered.com/installer/steamcmd_linux.tar.gz | \
-    tar -xz -C /steamcmd
+    tar -xz -C "$STEAMCMD_PATH"
 # Switch to Steam user
 USER steam
-WORKDIR "/steamcmd"
-ENTRYPOINT ["/steamcmd/steamcmd.sh"]
+WORKDIR "$STEAMCMD_PATH"
+ENTRYPOINT ["$STEAMCMD_PATH/steamcmd.sh"]
