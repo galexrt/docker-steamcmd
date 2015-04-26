@@ -12,7 +12,7 @@ RUN apt-get update && \
         net-tools \
         lib32stdc++6 \
         lib32z1 \
-        lib32z1-dev
+        lib32z1-dev \
         curl && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
