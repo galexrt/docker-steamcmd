@@ -21,7 +21,7 @@ RUN apt-get update && \
     tar -xz -C "$STEAMCMD_PATH"
     chown steam:steam -R "$STEAMCMD_PATH"
 USER steam
-RUN  && \
+RUN cd ~ && \
     mkdir -p ~/.steam/sdk32/steamclient.so && \
     ln -s "$STEAMCMD_PATH/steamcmd/linux32/steamclient.so" ~/.steam/sdk32/steamclient.so
 WORKDIR "$STEAMCMD_PATH"
