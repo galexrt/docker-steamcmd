@@ -22,6 +22,6 @@ RUN apt-get update && \
     chown steam:steam -R "$STEAMCMD_PATH"
 USER steam
 RUN cd ~ && \
-    ./steamcmd.sh +login anonymous +quit && \
+    ./steamcmd.sh +login anonymous +quit
 WORKDIR "$STEAMCMD_PATH"
 ENTRYPOINT ["$STEAMCMD_PATH/steamcmd.sh"]
