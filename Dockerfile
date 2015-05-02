@@ -4,6 +4,7 @@ MAINTAINER Alexander Trost <galexrt@googlemail.com>
 ENV STEAMCMD_PATH="/opt/steamcmd" DEBIAN_FRONTEND="noninteractive"
 # Add seperate Steam user
 RUN groupadd -r steam && useradd -r -m -d "$STEAMCMD_PATH" -g steam steam
+ENV STEAMCMD_USER="steam" STEAMCMD_GROUP="steam"
 # Install some base libraries
 RUN apt-get update && \
     apt-get install --no-install-recommends -y \
