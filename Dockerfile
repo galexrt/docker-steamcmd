@@ -1,6 +1,25 @@
-FROM galexrt/gameserverbase:latest
+FROM debian:jessie
 MAINTAINER Alexander Trost <galexrt@googlemail.com>
 ENV STEAMCMD_PATH="/steamcmd"
+RUN apt-get update && \
+    apt-get install --no-install-recommends -y \
+        ca-certificates \
+        lib32gcc1 \
+        net-tools \
+        lib32stdc++6 \
+        lib32z1 \
+        lib32z1-dev \
+        curl && \
+    rm -rf \
+        /var/lib/apt/lists/* \
+        /tmp/* \
+        /var/tmp/* \
+        /usr/share/locale/* \
+        /var/cache/debconf/*-old \
+        /var/lib/apt/lists/* \
+        /usr/share/doc/* && \
+    mkdir -p "$STEAMCMD_PATH" && \
+    chown "$STEAMCMD_USER":"$STEAMCMD_GROUP" "$STEAMCMD_PATH"
 USER "$SERVER_USER"
 RUN curl -s http://media.steampowered.com/installer/steamcmd_linux.tar.gz | \
     tar -xz -C "$STEAMCMD_PATH" && \
