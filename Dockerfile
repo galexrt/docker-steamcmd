@@ -1,9 +1,12 @@
 FROM debian:jessie
 MAINTAINER Alexander Trost <galexrt@googlemail.com>
-ENV STEAMCMD_PATH="/steamcmd" STEAMCMD_USER="steamcmd" STEAMCMD_GROUP="steamcmd"
+
+ENV STEAMCMD_PATH="/opt/steamcmd" STEAMCMD_USER="steamcmd" STEAMCMD_GROUP="steamcmd"
+
 RUN groupadd -r "$SERVER_GROUP" && \
     useradd -r -m -d "$STEAMCMD_PATH" -g "$STEAMCMD_USER" "$STEAMCMD_GROUP" && \
-    apt-get update && \
+    apt-get -qq update && \
+    apt-get -q dist-upgrade -y && \
     apt-get install --no-install-recommends -y \
         ca-certificates \
         lib32gcc1 \
@@ -23,8 +26,9 @@ RUN groupadd -r "$SERVER_GROUP" && \
     mkdir -p "$STEAMCMD_PATH" && \
     chown "$STEAMCMD_USER":"$STEAMCMD_GROUP" "$STEAMCMD_PATH"
 USER "$STEAMCMD_USER"
+WORKDIR "$STEAMCMD_PATH"
 RUN curl -s http://media.steampowered.com/installer/steamcmd_linux.tar.gz | \
     tar -xz -C "$STEAMCMD_PATH" && \
     "$STEAMCMD_PATH/steamcmd.sh" +login anonymous +quit
-WORKDIR "$STEAMCMD_PATH"
+
 ENTRYPOINT ["./steamcmd.sh"]
