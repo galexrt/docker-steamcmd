@@ -1,11 +1,9 @@
-FROM fedora:23
+FROM galexrt/gameserverbase:latest
 MAINTAINER Alexander Trost <galexrt@googlemail.com>
 
 ENV STEAMCMD_PATH="/steamcmd"
 
-RUN dnf -q upgrade -y && \
-    dnf install curl ca-certificates glibc.i686 libstdc++.i686 && \
-    mkdir -p "$STEAMCMD_PATH" && \
+RUN mkdir -p "$STEAMCMD_PATH" && \
     curl -s http://media.steampowered.com/installer/steamcmd_linux.tar.gz | \
     tar xz -C "$STEAMCMD_PATH" && \
     "$STEAMCMD_PATH/steamcmd.sh" +login anonymous +quit && \
