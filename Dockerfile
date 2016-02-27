@@ -1,4 +1,4 @@
-FROM galexrt/gameserver:latest
+FROM fedora:23
 MAINTAINER Alexander Trost <galexrt@googlemail.com>
 
 ENV STEAMCMD_PATH="/steamcmd"
