@@ -4,7 +4,7 @@ MAINTAINER Alexander Trost <galexrt@googlemail.com>
 ENV STEAMCMD_PATH="/steamcmd"
 
 RUN dnf -q upgrade -y && \
-    dnf install -y glibc.i686 libstdc++.i686 && \
+    dnf install -y tar glibc.i686 libstdc++.i686 && \
     mkdir -p "$STEAMCMD_PATH" && \
     curl -s http://media.steampowered.com/installer/steamcmd_linux.tar.gz | \
     tar xz -C "$STEAMCMD_PATH" && \
