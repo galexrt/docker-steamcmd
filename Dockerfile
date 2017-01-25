@@ -1,7 +1,8 @@
-FROM fedora:23
+FROM fedora:25
 MAINTAINER Alexander Trost <galexrt@googlemail.com>
 
 ENV STEAMCMD_PATH="/steamcmd"
+ENV STEAMCMD="$STEAMCMD_PATH/steamcmd.sh"
 
 RUN dnf -q upgrade -y && \
     dnf install -y tar glibc.i686 libstdc++.i686 && \
@@ -15,4 +16,4 @@ RUN dnf -q upgrade -y && \
         /var/tmp/* \
         /usr/share/locale/*
 
-ENTRYPOINT ["$STEAMCMD_PATH/steamcmd.sh"]
+ENTRYPOINT ["$STEAMCMD"]
