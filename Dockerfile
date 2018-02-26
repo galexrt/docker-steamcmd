@@ -1,5 +1,5 @@
 FROM fedora:25
-MAINTAINER Alexander Trost <galexrt@googlemail.com>
+LABEL maintainer="Alexander Trost <galexrt@googlemail.com>"
 
 ENV STEAMCMD_PATH="/steamcmd"
 ENV STEAMCMD="$STEAMCMD_PATH/steamcmd.sh"
